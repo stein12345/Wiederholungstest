@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Wiederholungstest – Datenbanken (SQL + Schlüssel)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.5; }
+    h1, h2 { color: #003366; }
+    .aufgabe { border: 1px solid #ccc; padding: 1rem 1.2rem; margin-bottom: 1.2rem; border-radius: 6px; }
+    .punkte { float: right; font-weight: bold; color: #666; }
+    textarea, input[type="text"] { width: 100%; min-height: 3rem; margin-top: .4rem; font-family: inherit; }
+    input.namefeld { width: 200px; min-height: 1.5rem; }
+    input.datumfeld { width: 150px; min-height: 1.5rem; }
+    .klein { width: 12rem; min-height: 2rem; }
+    table { border-collapse: collapse; margin-top: .6rem; width: 100%; max-width: 700px; }
+    table, th, td { border: 1px solid #999; }
+    th, td { padding: .4rem .5rem; }
+    .fehler { border: 2px solid red !important; }
+    button { background-color: #003366; color: white; padding: 0.6rem 1rem; border: none; border-radius: 5px; cursor: pointer; margin-top: 1rem; }
+    button:hover { background-color: #0055aa; }
+  </style>
+</head>
+<body>
+
+  <h1>Wiederholungstest – Datenbanken</h1>
+  <p><strong>Thema:</strong> SQL – Abfragen + Primärschlüssel / Schlüsselkonzepte</p>
+  <p>
+    <label><strong>Name:</strong> <input type="text" class="namefeld" id="name" required></label>
+    &nbsp;&nbsp;
+    <label><strong>Datum:</strong> <input type="text" class="datumfeld" id="datum" required></label>
+  </p>
+
+  <form id="testForm">
+
+    <div class="aufgabe">
+      <span class="punkte">8 P</span>
+      <h2>Aufgabe 1 – SQL-Grundbegriffe</h2>
+      <ol type="a">
+        <li>Nenne die vier zentralen Bestandteile einer SQL-Abfrage.</li>
+        <textarea required></textarea>
+        <li>Erkläre, was die <code>WHERE</code>-Klausel ist und wofür sie verwendet wird.</li>
+        <textarea required></textarea>
+        <li>Was bewirkt die <code>ORDER BY</code>-Klausel in einer SQL-Abfrage?</li>
+        <textarea required></textarea>
+      </ol>
+    </div>
+
+    <div class="aufgabe">
+      <span class="punkte">4 P</span>
+      <h2>Aufgabe 2 – Bedingungen &amp; Filter</h2>
+      <p>In SQL werden Bedingungen verwendet, um Datensätze gezielt auszuwählen. Typische Operatoren sind <code>AND</code>, <code>OR</code> und <code>LIKE</code>.</p>
+      <ol type="a">
+        <li>Formuliere eine Bedingung, mit der alle Datensätze ausgewählt werden, deren Attribut <code>Name</code> mit dem Buchstaben „A“ beginnt.</li>
+        <textarea required></textarea>
+        <li>Erkläre den Unterschied zwischen <code>AND</code> und <code>OR</code> innerhalb einer <code>WHERE</code>-Klausel.</li>
+        <textarea required></textarea>
+      </ol>
+    </div>
+
+    <div class="aufgabe">
+      <span class="punkte">4 P</span>
+      <h2>Aufgabe 3 – Einen Datensatz finden</h2>
+      <p>Auf inf-schule wurde gezeigt, dass z. B. der Ort <strong>Washington</strong> mehrfach vorkommt.</p>
+      <ol type="a">
+        <li>Erkläre in 1–2 Sätzen, <strong>warum</strong> das Suchen nach einem Datensatz nur über den Namen problematisch sein kann.</li>
+        <textarea required></textarea>
+        <li>Formuliere eine <strong>allgemeine</strong> Anforderung an ein Datenbanksystem, damit immer genau <u>ein</u> Datensatz gefunden werden kann.</li>
+        <textarea required></textarea>
+      </ol>
+    </div>
+
+    <div class="aufgabe">
+      <span class="punkte">4 P</span>
+      <h2>Aufgabe 4 – Fachkonzept „Schlüssel“</h2>
+      <p>Trage die passenden Begriffe ein: <strong>Primärschlüssel</strong>, <strong>künstlicher Schlüssel</strong>, <strong>Schlüsselattribut(e)</strong>, <strong>eindeutig</strong>.</p>
+      <ol type="a">
+        <li>Ein __________ ist ein Attribut oder eine Kombination mehrerer Attribute, mit denen jeder Datensatz in einer Tabelle eindeutig identifiziert werden kann.</li>
+        <input type="text" class="klein" required>
+        <li>Der __________ einer Tabelle darf in keinem Datensatz doppelt vorkommen.</li>
+        <input type="text" class="klein" required>
+        <li>Wenn reale Daten (z. B. Ortsname, Länge, Breite) zusammen nicht sicher eindeutig sind, fügt man oft einen __________ (z. B. ONR) hinzu.</li>
+        <input type="text" class="klein" required>
+        <li>Der Wert eines Primärschlüssels muss immer __________ sein.</li>
+        <input type="text" class="klein" required>
+      </ol>
+    </div>
+
+    <div class="aufgabe">
+      <span class="punkte">4 P</span>
+      <h2>Aufgabe 5 – Primärschlüssel prüfen</h2>
+      <p>Gegeben ist ein Ausschnitt aus einer (fiktiven) <strong>land</strong>-Tabelle:</p>
+      <table>
+        <thead>
+          <tr><th>LAND_ID</th><th>Name</th><th>Kontinent</th><th>Einwohner</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A</td><td>Österreich</td><td>Europa</td><td>8 900 000</td></tr>
+          <tr><td>B</td><td>Belgien</td><td>Europa</td><td>11 600 000</td></tr>
+          <tr><td>A</td><td>Australien</td><td>Ozeanien</td><td>26 000 000</td></tr>
+        </tbody>
+      </table>
+      <ol type="a">
+        <li>Erläutere, <strong>warum</strong> diese Tabelle so nicht gespeichert werden darf, wenn <code>LAND_ID</code> der Primärschlüssel ist.</li>
+        <textarea required></textarea>
+        <li>Nenne eine <strong>Möglichkeit</strong>, wie man den Fehler beheben könnte.</li>
+        <textarea required></textarea>
+      </ol>
+    </div>
+
+    <button type="button" onclick="downloadPDF()">PDF herunterladen</button>
+
+  </form>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const requiredFields = Array.from(document.querySelectorAll('input[required], textarea[required]'));
+    function markPreviousEmptyFields(changedIndex) {
+      for (let i = 0; i < changedIndex; i++) {
+        const field = requiredFields[i];
+        if (!field.value.trim()) {
+          field.classList.add('fehler');
+        }
+      }
+    }
+    requiredFields.forEach((field, index) => {
+      field.addEventListener('input', () => {
+        if (field.value.trim()) field.classList.remove('fehler');
+        markPreviousEmptyFields(index);
+      });
+    });
+
+    async function downloadPDF() {
+      const form = document.getElementById('testForm');
+      const clone = form.cloneNode(true);
+      clone.style.width = form.offsetWidth + 'px';
+
+      const inputs = clone.querySelectorAll('input, textarea');
+      inputs.forEach(el => {
+        const span = document.createElement('div');
+        span.textContent = el.value || ' ';
+        span.style.minHeight = '2rem';
+        span.style.borderBottom = '1px solid #ccc';
+        el.parentNode.replaceChild(span, el);
+      });
+
+      const nameField = document.getElementById('name');
+      const dateField = document.getElementById('datum');
+      const header = document.createElement('p');
+      header.innerHTML = `<strong>Name:</strong> ${nameField.value || ''} &nbsp;&nbsp; <strong>Datum:</strong> ${dateField.value || ''}`;
+      clone.prepend(header);
+
+      document.body.appendChild(clone);
+      const { jsPDF } = window.jspdf;
+      const canvas = await html2canvas(clone, { scale: 1 });
+      const imgData = canvas.toDataURL('image/jpeg', 0.5);
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = pageWidth - 20;
+      const imgHeight = canvas.height * imgWidth / canvas.width;
+
+      let heightLeft = imgHeight;
+      let position = 10;
+
+      pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft > 0) {
+        pdf.addPage();
+        position = 0;
+        pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('Wiederholungstest.pdf');
+      document.body.removeChild(clone);
+    }
+  </script>
+
+</body>
+</html>
